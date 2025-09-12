@@ -1,0 +1,30 @@
+.aside {
+  background-color: #080e21;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+h1 .svg {
+  width: "20px" !important;
+  height: "20px" !important;
+}
+.aside h1 {
+  margin: 20px auto 70px;
+  opacity: 0.8;
+  transition: 0.5s;
+  width: 90%;
+  -webkit-transition: 0.5s;
+  -moz-transition: 0.5s;
+  -ms-transition: 0.5s;
+  -o-transition: 0.5s;
+  border-radius: 10px;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+}
+.aside h1:hover {
+  background-color: #0f172a;
+  opacity: 1;
+  cursor: pointer;
+}
