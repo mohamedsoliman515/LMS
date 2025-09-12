@@ -1,11 +1,12 @@
 import ImageWithText from "../ImageWithText/ImageWithText";
 import styles from "./style.module.css"
 import { AssistantsIcon, courses, chapters} from "../../../assets";
+import {  NavLink } from "react-router-dom";
 const AsideMenu = () => {
   const {aside}=styles
   return (
     <aside className={aside}>
-      <h1>
+      <div>
         <svg
           style={{
             width: "30px",
@@ -29,11 +30,19 @@ const AsideMenu = () => {
             fill-rule="evenodd"
           ></path>
         </svg>
-        EduPlatform
-      </h1>
-      <ImageWithText image={courses} text="Courses" />
-      <ImageWithText image={chapters} text="Chapters" />
-      <ImageWithText image={AssistantsIcon} text="Assistants" />
+        <h1>EduPlatform</h1>
+      </div>
+      <NavLink to="/">
+        <ImageWithText image={courses} text="Courses" />
+      </NavLink>
+
+      <NavLink to="/chaptersPage">
+        <ImageWithText image={chapters} text="Chapters" />
+      </NavLink>
+
+      <NavLink to="/assistantsPage">
+        <ImageWithText image={AssistantsIcon} text="Assistants" />
+      </NavLink>
     </aside>
   );
 };
