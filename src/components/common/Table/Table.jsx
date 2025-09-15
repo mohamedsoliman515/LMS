@@ -1,8 +1,8 @@
-
+import {Edit,Delete} from "../../../assets"
 import styles from "./styles.module.css";
 
 export default function CourseTable() {
-  const { container,mainTable} = styles;
+  const { container,mainTable,actions} = styles;
   const courses = [
     {
       name: "React Basics",
@@ -36,12 +36,16 @@ export default function CourseTable() {
                 {course.tags.map((tag, i) => (
                   <span key={i} className="tag">
                     {tag}
-                  </span>
+                     </span>
                 ))}
               </td>
               <td>
-                <button className="btn delete">Delete</button>
-                <button className="btn edit">Edit</button>
+                <div className={actions}>
+                   <img src={Edit} alt="Edit"/>
+                   <img src={Delete} alt="Delete"/>
+          
+          
+                </div>   
               </td>
             </tr>
           ))}

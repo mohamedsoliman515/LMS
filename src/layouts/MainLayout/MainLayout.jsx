@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import AsideMenu from "../../components/common/AsideMenu/AsideMenu";
+import SideMenu from "../../components/common/SideMenu/SideMenu";
 import Header from "../../components/common/header/Header";
 import SearchInput from "../../components/common/SearchInput/SearchInput";
 import styles from "./style.module.css";
@@ -8,7 +8,7 @@ const MainLayout = () => {
   return (
     <div className={MainLayout}>
       <nav>
-        <AsideMenu />
+        <SideMenu />
       </nav>
       <div>
         <header>

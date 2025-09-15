@@ -10,7 +10,7 @@
   -o-border-radius: 10px;
 }
 
-.mainTable{
+.mainTable {
   width: 100%;
   border-collapse: collapse;
   background-color: #0B1224;
@@ -66,4 +66,17 @@
 
 .btn:hover {
   opacity: 0.9;
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+}
+
+.actions img {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  align-items: center;
+
 }
