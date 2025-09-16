@@ -21,12 +21,6 @@ export const AuthProvider = ({ children }) => {
     Cookies.set("authToken", newToken, { expires: 15 });
   };
 
-  // Clear token  when(logout)
-  //   const clearAuthToken = () => {
-  //     setToken(null);
-  //     Cookies.remove("authToken");
-  //   };
-
   return (
     <AuthContext.Provider value={{ token, setAuthToken }}>
       {children}

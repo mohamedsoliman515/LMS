@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { useUrl } from "../../components/context/UrlContext";
+import { useAuth } from "../../components/context/AuthContext";
 import styles from "./style.module.css";
 
 const { signinContainer, signinForm, formGroup, btn } = styles;
@@ -10,9 +10,12 @@ const SignIn = () => {
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
-  const { setAuthToken } = useUrl();
-  const navigate = useNavigate();
+  const { token, setAuthToken } = useAuth();
 
+  const navigate = useNavigate();
+  if (token) {
+    return navigate("/mainLayout");
+  }
   // handle input change
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });

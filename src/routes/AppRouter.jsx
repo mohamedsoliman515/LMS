@@ -19,7 +19,7 @@ const AppRouter = () => {
     // delete children pages
     {
       path: "/mainLayout",
-      element: token ? <MainLayout /> : <Navigate to="/" replace />,
+      element: <MainLayout />,
       children: [
         {
           index: true,
