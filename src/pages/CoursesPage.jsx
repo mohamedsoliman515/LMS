@@ -1,7 +1,11 @@
-import Table from "../components/common/Table/Table"
+import Table from "../components/common/Table/Table";
 
 const CoursesPage = () => {
-  return <div><Table/></div>;
-}
+  return (
+    <div>
+      <Table />
+    </div>
+  );
+};
 
-export default CoursesPage
+export default CoursesPage;

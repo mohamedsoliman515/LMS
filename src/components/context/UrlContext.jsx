@@ -1,13 +1,11 @@
 import { createContext, useContext, useState } from "react";
 
-// Create Context
 const UrlContext = createContext();
 
-// Create Provider
 export const UrlProvider = ({ children }) => {
-     
-  // state to manage dynamic URL
-  const [baseUrl, setBaseUrl] = useState("https://api.example.com");
+  const [baseUrl, setBaseUrl] = useState(
+    "http://localhost:9090/anchor-frost/courses"
+  );
 
   // function to update
   const updateUrl = (newUrl) => setBaseUrl(newUrl);
