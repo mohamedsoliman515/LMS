@@ -1,12 +1,17 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useUrl } from "../../components/context/UrlContext";
 import styles from "./style.module.css";
 
+const { signinContainer, signinForm, formGroup, btn } = styles;
+
 const SignIn = () => {
-  const { signinContainer, signinForm, formGroup, btn } = styles;
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
+  const { setAuthToken } = useUrl();
+  const navigate = useNavigate();
 
   // handle input change
   const handleChange = (e) => {
@@ -25,10 +30,9 @@ const SignIn = () => {
 
     if (!formData.password) {
       newErrors.password = "Password is required";
-    } else if (formData.password.length < 6) {
+    } else if (formData.password.length < 4) {
       newErrors.password = "Password must be at least 6 characters";
     }
-
     return newErrors;
   };
 
@@ -45,10 +49,12 @@ const SignIn = () => {
 
     try {
       const response = await axios.post(
-        "https://example.com/api/signin",
+        "http://localhost:9090/anchor-frost/auth/login",
         formData
       );
-      console.log("Success:", response.data);
+      setAuthToken(response.data);
+      navigate("/mainLayout");
+
       alert("Login successful!");
     } catch (error) {
       console.error(

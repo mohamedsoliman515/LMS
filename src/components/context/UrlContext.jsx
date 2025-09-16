@@ -1,5 +1,4 @@
 import { createContext, useContext, useState } from "react";
-
 const UrlContext = createContext();
 
 export const UrlProvider = ({ children }) => {
@@ -7,7 +6,7 @@ export const UrlProvider = ({ children }) => {
     "http://localhost:9090/anchor-frost/courses"
   );
 
-  // function to update
+  // function to update url
   const updateUrl = (newUrl) => setBaseUrl(newUrl);
 
   return (

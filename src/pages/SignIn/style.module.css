@@ -1,0 +1,67 @@
+.signinContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #080e21;
+  color: rgba(255, 255, 255, 0.87);
+}
+
+.signinForm {
+  background-color: #0f1a35;
+  padding: 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  width: 300px;
+}
+
+.signinForm h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.formGroup {
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.formGroup label {
+  margin-bottom: 0.5rem;
+  font-size: 14px;
+}
+
+.formGroup input {
+  padding: 0.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 4px;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.87);
+}
+
+.formGroup input:focus {
+  border-color: #1e90ff;
+  outline: none;
+}
+
+.formGroup .error {
+  color: #ff4d4d;
+  font-size: 12px;
+  margin-top: 0.25rem;
+}
+
+.btn {
+  width: 100%;
+  padding: 0.7rem;
+  background-color: #1e90ff;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.btn:disabled {
+  background-color: #4c669f;
+  cursor: not-allowed;
+}
