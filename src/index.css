@@ -70,7 +70,7 @@ button:focus-visible {
   }
 
 }
-.active  div{
+.active div{
+  background-color: #1173d4;
 
-    background-color: #1173d4;
 }

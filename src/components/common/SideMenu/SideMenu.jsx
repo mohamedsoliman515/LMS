@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom";
 import { useUrl } from "../../context/UrlContext";
 const SideMenu = () => {
   const { aside } = styles;
-  const { updateUrl } = useUrl();
+  const { updateEndPoint } = useUrl();
   return (
     <aside className={aside}>
       <div>
@@ -36,27 +36,28 @@ const SideMenu = () => {
         <h2> EduPlatform </h2>
       </div>
       <NavLink
-        to="mainLayout"
+        to="/mainLayout"
+        end
         onClick={() => {
-          updateUrl("http://localhost:9090/anchor-frost/courses");
+          updateEndPoint("/courses");
         }}
       >
         <ImageWithText image={courses} text="Courses" />
       </NavLink>
 
       <NavLink
-        to="mainLayout/chaptersPage"
+        to="/mainLayout/chaptersPage"
         onClick={() => {
-          updateUrl("http://localhost:9090/anchor-frost/chapters");
+          updateEndPoint("/chapters");
         }}
       >
         <ImageWithText image={chapters} text="Chapters" />
       </NavLink>
 
       <NavLink
-        to="mainLayout/assistantsPage"
+        to="/mainLayout/assistantsPage"
         onClick={() => {
-          updateUrl("http://localhost:9090/anchor-frost/assistants");
+          updateEndPoint("/assistants");
         }}
       >
         <ImageWithText image={AssistantsIcon} text="Assistants" />

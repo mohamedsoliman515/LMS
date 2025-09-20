@@ -1,29 +1,24 @@
 import { Edit, Delete } from "../../../assets";
 import { useEffect, useState } from "react";
-import axios from "axios";
+// import axios from "axios";
 import { useUrl } from "../../context/UrlContext";
 import styles from "./styles.module.css";
-
+import api from "../../../services/Axios-global-baseUrl";
 export default function CourseTable() {
   const { container, mainTable, actions } = styles;
 
-  const { baseUrl } = useUrl();
+  const { endPoint } = useUrl();
   const [data, setData] = useState([]);
-  const email = "admin@gmail.com";
-  const password = "admin";
-  const token = btoa(`${email}:${password}`); // base64 encode
 
   useEffect(() => {
-    if (!baseUrl) return;
-    axios
-      .get(`${baseUrl}`, {
-        headers: { Authorization: `Basic ${token}` },
-      })
+    if (!endPoint) return;
+    api
+      .get(`${endPoint}`)
       .then((res) => {
         setData(res.data);
       })
       .catch((err) => console.error("Axios error:", err));
-  }, [baseUrl, token]);
+  }, [endPoint]);
 
   const headers = data.length > 0 ? Object.keys(data[0]) : [];
 

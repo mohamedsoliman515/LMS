@@ -1,9 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import { useAuth } from "../../components/context/AuthContext";
 import styles from "./style.module.css";
-
+import api from "../../services/Axios-global-baseUrl";
 const { signinContainer, signinForm, formGroup, btn } = styles;
 
 const SignIn = () => {
@@ -51,10 +50,7 @@ const SignIn = () => {
     setLoading(true);
 
     try {
-      const response = await axios.post(
-        "http://localhost:9090/anchor-frost/auth/login",
-        formData
-      );
+      const response = await api.post("/auth/login", formData);
       setAuthToken(response.data);
       navigate("/mainLayout");
 

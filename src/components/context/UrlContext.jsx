@@ -1,16 +1,15 @@
 import { createContext, useContext, useState } from "react";
+
 const UrlContext = createContext();
 
 export const UrlProvider = ({ children }) => {
-  const [baseUrl, setBaseUrl] = useState(
-    "http://localhost:9090/anchor-frost/courses"
-  );
+  const [endPoint, setEndpoint] = useState("/courses");
 
   // function to update url
-  const updateUrl = (newUrl) => setBaseUrl(newUrl);
+  const updateEndPoint = (newUrl) => setEndpoint(newUrl);
 
   return (
-    <UrlContext.Provider value={{ baseUrl, updateUrl }}>
+    <UrlContext.Provider value={{ endPoint, updateEndPoint }}>
       {children}
     </UrlContext.Provider>
   );
