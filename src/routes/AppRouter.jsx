@@ -6,10 +6,10 @@ import {
 import MainLayout from "../layouts/MainLayout/MainLayout";
 import { CoursesPage, ChaptersPage, AssistantsPage } from "../pages";
 import SignIn from "../pages/SignIn/SignIn";
-import { useUrl } from "../components/context/UrlContext";
+import { useAuth } from "../components/context/AuthContext";
 
 const AppRouter = () => {
-  const { token } = useUrl();
+  const { token } = useAuth();
 
   const router = createBrowserRouter([
     {

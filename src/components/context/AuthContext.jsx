@@ -4,11 +4,12 @@ import Cookies from "js-cookie";
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [token, setToken] = useState(null);
+  const [token, setToken] = useState(Cookies.get("authToken") || null);
 
   // Load token from cookies on app start
   useEffect(() => {
     const savedToken = Cookies.get("authToken");
+
     if (savedToken) {
       setToken(savedToken);
     }

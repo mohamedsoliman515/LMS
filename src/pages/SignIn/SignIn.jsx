@@ -9,12 +9,17 @@ const SignIn = () => {
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
-  const { token, setAuthToken } = useAuth();
+  const { setAuthToken } = useAuth();
 
   const navigate = useNavigate();
-  if (token) {
-    return navigate("/mainLayout");
-  }
+
+  // useEffect(() => {
+  //   if (token) {
+  //     navigate("/mainLayout");
+  //     return;
+  //   }
+  // }, [token, navigate]);
+
   // handle input change
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
