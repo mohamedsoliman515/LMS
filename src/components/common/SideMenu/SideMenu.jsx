@@ -1,7 +1,6 @@
 import ImageWithText from "../ImageWithText/ImageWithText";
 import styles from "./style.module.css";
 import { AssistantsIcon, courses, chapters } from "../../../assets";
-import { NavLink } from "react-router-dom";
 import { useUrl } from "../../context/UrlContext";
 const SideMenu = () => {
   const { aside } = styles;
@@ -35,33 +34,30 @@ const SideMenu = () => {
         </svg>
         <h2> EduPlatform </h2>
       </div>
-      <NavLink
-        to="/mainLayout"
-        end
-        onClick={() => {
-          updateEndPoint("/courses");
-        }}
-      >
-        <ImageWithText image={courses} text="Courses" />
-      </NavLink>
 
-      <NavLink
-        to="/mainLayout/chaptersPage"
-        onClick={() => {
-          updateEndPoint("/chapters");
-        }}
-      >
-        <ImageWithText image={chapters} text="Chapters" />
-      </NavLink>
-
-      <NavLink
-        to="/mainLayout/assistantsPage"
-        onClick={() => {
-          updateEndPoint("/assistants");
-        }}
-      >
-        <ImageWithText image={AssistantsIcon} text="Assistants" />
-      </NavLink>
+      <ul>
+        <li
+          onClick={() => {
+            updateEndPoint("/courses");
+          }}
+        >
+          <ImageWithText image={courses} text="Courses" />
+        </li>
+        <li
+          onClick={() => {
+            updateEndPoint("/chapters");
+          }}
+        >
+          <ImageWithText image={chapters} text="Chapters" />
+        </li>
+        <li
+          onClick={() => {
+            updateEndPoint("/assistants");
+          }}
+        >
+          <ImageWithText image={AssistantsIcon} text="Assistants" />
+        </li>
+      </ul>
     </aside>
   );
 };

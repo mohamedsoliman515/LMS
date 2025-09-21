@@ -4,7 +4,7 @@ import {
   Navigate,
 } from "react-router-dom";
 import MainLayout from "../layouts/MainLayout/MainLayout";
-import { CoursesPage, ChaptersPage, AssistantsPage } from "../pages";
+import { CoursesPage } from "../pages";
 import SignIn from "../pages/SignIn/SignIn";
 import { useAuth } from "../components/context/AuthContext";
 
@@ -24,14 +24,6 @@ const AppRouter = () => {
         {
           index: true,
           element: <CoursesPage />,
-        },
-        {
-          path: "chaptersPage",
-          element: <ChaptersPage />,
-        },
-        {
-          path: "assistantsPage",
-          element: <AssistantsPage />,
         },
       ],
     },
