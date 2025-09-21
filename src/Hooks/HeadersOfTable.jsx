@@ -4,19 +4,27 @@ import { useUrl } from "../components/context/UrlContext";
 const HeadersOfTable = () => {
   const { endPoint } = useUrl();
 
-  const [columnsHeaderTable, setColumnsHeaderTable] = useState([
-    "id",
-    "name",
-    "description",
-  ]);
+  const [columnsHeaderTable, setColumnsHeaderTable] = useState([]);
 
   useEffect(() => {
     if (endPoint === "/chapters") {
-      setColumnsHeaderTable(["chapterId", "chapterName", "lessonCount"]);
+      setColumnsHeaderTable([
+        "Name",
+        "Description",
+        "Creation Date",
+        "Last Update",
+        "Actions",
+      ]);
     } else if (endPoint === "/assistants") {
-      setColumnsHeaderTable(["assistantId", "assistantName", "role"]);
+      setColumnsHeaderTable(["Name", "Email", "Phone1", "Phone2", "Actions"]);
     } else {
-      setColumnsHeaderTable(["CoursesId", "name", "description"]);
+      setColumnsHeaderTable([
+        "Name",
+        "Description",
+        "Creation Date",
+        "Last Update",
+        "Actions",
+      ]);
     }
   }, [endPoint]);
 

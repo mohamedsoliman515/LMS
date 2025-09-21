@@ -6,6 +6,11 @@ const api = axios.create({
   baseURL: "http://localhost:9090/anchor-frost", // your base URL
 });
 
+// Create an axios instance
+// const notAuthenticatedApi = axios.create({
+//   baseURL: "http://localhost:9090/anchor-frost", // your base URL
+// });
+
 // Add a request interceptor
 api.interceptors.request.use(
   (config) => {

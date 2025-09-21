@@ -1,6 +1,5 @@
 import { Edit, Delete } from "../../../assets";
 import { useEffect, useState } from "react";
-// import axios from "axios";
 import { useUrl } from "../../context/UrlContext";
 import styles from "./styles.module.css";
 import api from "../../../services/Axios-global-baseUrl";
@@ -21,9 +20,6 @@ export default function CourseTable() {
       })
       .catch((err) => console.error("Axios error:", err));
   }, [endPoint]);
-
-  const headers = data.length > 0 ? Object.keys(data[0]) : [];
-
   return (
     <div className={container}>
       <table className={mainTable}>
@@ -32,51 +28,40 @@ export default function CourseTable() {
         </thead>
 
         <tbody>
-          {data.map((row, rowIndex) => (
-            <tr key={rowIndex}>
-              {headers.map((key) => (
-                <td key={key}>
-                  {Array.isArray(row[key])
-                    ? row[key].map((item, i) => (
-                        <span key={i} className="tag">
-                          {item}
-                        </span>
-                      ))
-                    : row[key]}
-                </td>
-              ))}
-              <td>
-                <div className={actions}>
-                  <img src={Edit} alt="Edit" />
-                  <img src={Delete} alt="Delete" />
-                </div>
+          {data.length > 0 ? (
+            data.map((item) => {
+              return (
+                <tr key={item.id || name}>
+                  <td>
+                    {item.course_name ||
+                      item.chapter_name ||
+                      item.assistant_name}
+                  </td>
+                  <td>
+                    {item.course_description ||
+                      item.chapter_description ||
+                      item.assistant_email}
+                  </td>
+                  <td>{item.creation_date || item.assistant_phone1}</td>
+                  <td>{item.last_update || item.assistant_phone2}</td>
+                  <td>
+                    <div className={actions}>
+                      <img src={Edit} alt="Edit" className="edit" />
+                      <img src={Delete} alt="Delete" />
+                    </div>
+                  </td>
+                </tr>
+              );
+            })
+          ) : (
+            <tr>
+              <td colSpan="5" style={{ textAlign: "center" }}>
+                No data available
               </td>
             </tr>
-          ))}
+          )}
         </tbody>
       </table>
     </div>
   );
 }
-
-// <tbody>
-//   {data.map((course, index) => (
-//     <tr key={index}>
-//       <td>{course.name}</td>
-//       <td>{course.description}</td>
-//       <td>
-//         {course.tags.map((tag, i) => (
-//           <span key={i} className="tag">
-//             {tag}
-//           </span>
-//         ))}
-//       </td>
-//       <td>
-//         <div className={actions}>
-//           <img src={Edit} alt="Edit" />
-//           <img src={Delete} alt="Delete" />
-//         </div>
-//       </td>
-//     </tr>
-//   ))}
-// </tbody>;
