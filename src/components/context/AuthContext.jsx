@@ -6,7 +6,7 @@ const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(Cookies.get("authToken") || null);
 
-  // Load token from cookies on app start
+  // Load token from cookies when app start
   useEffect(() => {
     const savedToken = Cookies.get("authToken");
 

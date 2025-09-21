@@ -16,7 +16,7 @@ const AppRouter = () => {
       path: "/",
       element: token ? <Navigate to="/mainLayout" replace /> : <SignIn />,
     },
-    // delete children pages
+
     {
       path: "/mainLayout",
       element: <MainLayout />,

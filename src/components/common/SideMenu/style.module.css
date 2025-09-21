@@ -28,10 +28,10 @@
   opacity: 1;
   cursor: pointer;
 }
-@media (max-width: 1024px) {
 
- .aside svg,
- .aside img {
+@media (max-width: 1024px) {
+  .aside svg,
+  .aside img {
     display: none;
   }
 }
