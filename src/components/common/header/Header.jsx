@@ -1,5 +1,5 @@
 import styles from "./style.module.css";
-import AddButton from "../../../Hooks/AddButton/AddButton";
+import ChangeButton from "../../../Hooks/ChangeButton/ChangeButton";
 const Header = () => {
   const { header } = styles;
   return (
@@ -7,7 +7,7 @@ const Header = () => {
       <h1>Manage Courses</h1>
       {/* validation on buttons think do it smart : fun take props and call modal based on endpoint  */}
 
-      <AddButton />
+      <ChangeButton />
     </div>
   );
 };

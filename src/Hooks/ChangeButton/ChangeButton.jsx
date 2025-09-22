@@ -1,7 +1,7 @@
 import styles from "./style.module.css";
 import { useUrl } from "../../components/context/UrlContext";
 
-const AddButton = () => {
+const ChangeButton = () => {
   const { button } = styles;
   const { endPoint } = useUrl();
 
@@ -20,4 +20,4 @@ const AddButton = () => {
   );
 };
 
-export default AddButton;
+export default ChangeButton;

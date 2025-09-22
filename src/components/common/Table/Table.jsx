@@ -4,9 +4,9 @@ import { useUrl } from "../../context/UrlContext";
 import styles from "./styles.module.css";
 import api from "../../../services/Axios-global-baseUrl";
 import HeadersOfTable from "../../../Hooks/HeadersOfTable";
-export default function CourseTable() {
-  const { container, mainTable, actions } = styles;
+const { container, mainTable, actions } = styles;
 
+export default function CourseTable() {
   const { endPoint } = useUrl();
   const [data, setData] = useState([]);
 
@@ -20,6 +20,7 @@ export default function CourseTable() {
       })
       .catch((err) => console.error("Axios error:", err));
   }, [endPoint]);
+
   return (
     <div className={container}>
       <table className={mainTable}>
