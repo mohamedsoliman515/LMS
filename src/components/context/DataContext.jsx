@@ -5,7 +5,6 @@ const DataContext = createContext();
 export const DataProvider = ({ children }) => {
   const [data, setData] = useState([]);
   const [search, setSearch] = useState("");
-  console.log(data);
 
   const updateData = (data) => {
     setData(data);
