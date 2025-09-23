@@ -12,8 +12,21 @@ const ChangeButton = () => {
     label = "Assistant";
   }
 
+  // const handleModal = () => {
+  //   if (endPoint === "/chapters") {
+  //     console.log("chapters");
+  //   } else if (endPoint === "/assistants") {
+  //     console.log("assistants");
+  //   } else {
+  //     console.log("courses");
+  //   }
+  // };
+
   return (
-    <button className={button}>
+    <button
+      className={button}
+      //  onClick={handleModal}
+    >
       <span>+ </span>
       <p>Add New {label}</p>
     </button>

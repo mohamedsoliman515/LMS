@@ -1,27 +1,24 @@
 import { useEffect, useState } from "react";
+import { useData } from "../../context/DataContext"; // adjust path if needed
 import style from "./style.module.css";
 
 const SearchInput = ({ placeholder = "Search..." }) => {
   const { container, input, icon } = style;
-  const [value, setValue] = useState("");
-  // const filteredItems = items.filter((item) =>
-  //   item.toLowerCase().includes(query.toLowerCase())
-  // );
+  const [search, setSearch] = useState("");
+  const { updateSearch } = useData();
+
   useEffect(() => {
-    if (!value) {
-      return;
-    }
-    const timer = setTimeout(() => {}, 500);
-    return () => clearTimeout(timer);
-  }, [value]);
+    if (!search) return;
+    updateSearch(search);
+  }, [search]);
 
   return (
     <div className={container}>
       <input
         className={input}
         type="text"
-        value={value}
-        onChange={(e) => setValue(e.target.value)}
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
         placeholder={placeholder}
       />
       {/* Search Icon */}
