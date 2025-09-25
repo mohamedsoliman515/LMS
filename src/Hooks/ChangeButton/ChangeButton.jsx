@@ -1,9 +1,13 @@
 import styles from "./style.module.css";
 import { useUrl } from "../../components/context/UrlContext";
+import { useState } from "react";
+import Modal from "../../components/common/Modal/Modal";
 
 const ChangeButton = () => {
   const { button } = styles;
   const { endPoint } = useUrl();
+
+  const [isOpen, setIsOpen] = useState(false);
 
   let label = "Course";
   if (endPoint === "/chapters") {
@@ -12,24 +16,15 @@ const ChangeButton = () => {
     label = "Assistant";
   }
 
-  // const handleModal = () => {
-  //   if (endPoint === "/chapters") {
-  //     console.log("chapters");
-  //   } else if (endPoint === "/assistants") {
-  //     console.log("assistants");
-  //   } else {
-  //     console.log("courses");
-  //   }
-  // };
-
   return (
-    <button
-      className={button}
-      //  onClick={handleModal}
-    >
-      <span>+ </span>
-      <p>Add New {label}</p>
-    </button>
+    <>
+      <button className={button} onClick={() => setIsOpen(true)}>
+        <span>+ </span>
+        <p>Add New {label}</p>
+      </button>
+
+      <Modal open={isOpen} onClose={() => setIsOpen(false)} />
+    </>
   );
 };
 
