@@ -1,9 +1,9 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { useState } from "react";
 import style from "./style.module.css";
-const { backdrop, modal, checkboxLabel } = style;
+const { backdrop, modal } = style;
 
-const Modal = ({ open, onClose }) => {
+const Modal = ({ open, onClose, fields }) => {
   if (!open) return null;
 
   const [formData, setFormData] = useState({
@@ -45,45 +45,17 @@ const Modal = ({ open, onClose }) => {
         </button>
 
         <form onSubmit={handleSubmit}>
-          <div>
-            <label>Name:</label>
-            <input name="name" value={formData.name} onChange={handleChange} />
-          </div>
-
-          <div>
-            <label>Description:</label>
-            <input
-              name="description"
-              value={formData.description}
-              onChange={handleChange}
-              rows="3"
-            />
-          </div>
-
-          <div>
-            <label>Tags (comma separated):</label>
-            <input name="tags" value={formData.tags} onChange={handleChange} />
-          </div>
-
-          <div className={checkboxLabel}>
-            <label>Is Public</label>
-            <input
-              type="checkbox"
-              name="isPublic"
-              checked={formData.isPublic}
-              onChange={handleChange}
-            />
-          </div>
-
-          <div>
-            <label>Price:</label>
-            <input
-              type="number"
-              name="price"
-              value={formData.price}
-              onChange={handleChange}
-            />
-          </div>
+          {fields.map((field) => (
+            <div key={field.id}>
+              <label>{field.label}</label>
+              <input
+                type={field.type}
+                name={field.name}
+                placeholder={field.placeholder}
+                onChange={handleChange}
+              />
+            </div>
+          ))}
 
           <button type="submit">Submit</button>
         </form>

@@ -1,20 +1,33 @@
 import styles from "./style.module.css";
 import { useUrl } from "../../components/context/UrlContext";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Modal from "../../components/common/Modal/Modal";
-
+import {
+  courseFields,
+  chaptersFields,
+  assistantsFields,
+} from "../../config/formModalFields";
 const ChangeButton = () => {
   const { button } = styles;
   const { endPoint } = useUrl();
+  const [label, setLabel] = useState("Course");
 
+  const [fields, setFields] = useState(courseFields);
   const [isOpen, setIsOpen] = useState(false);
-
-  let label = "Course";
-  if (endPoint === "/chapters") {
-    label = "Chapter";
-  } else if (endPoint === "/assistants") {
-    label = "Assistant";
-  }
+  // const [formData, setFormData] = useState({});
+  // Update fields & label when endpoint changes
+  useEffect(() => {
+    if (endPoint === "/chapters") {
+      setFields(chaptersFields);
+      setLabel("Chapter");
+    } else if (endPoint === "/assistants") {
+      setFields(assistantsFields);
+      setLabel("Assistant");
+    } else {
+      setFields(courseFields);
+      setLabel("Course");
+    }
+  }, [endPoint]);
 
   return (
     <>
@@ -23,7 +36,7 @@ const ChangeButton = () => {
         <p>Add New {label}</p>
       </button>
 
-      <Modal open={isOpen} onClose={() => setIsOpen(false)} />
+      <Modal open={isOpen} onClose={() => setIsOpen(false)} fields={fields} />
     </>
   );
 };
