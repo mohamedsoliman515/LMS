@@ -1,33 +1,33 @@
 // src/config/formFields.js
+// start to show UI
 export const courseFields = [
   {
     id: 1,
-    name: "name",
+    name: "coursesName",
     label: "Course Name",
     type: "text",
     placeholder: "Enter course name",
   },
   {
     id: 2,
-    name: "description",
+    name: "descriptionName",
     label: "Description",
-    type: "textarea",
-    placeholder: "Enter description",
+    type: "text",
+    placeholder: "Enter Description",
   },
   {
     id: 3,
-    name: "tags",
+    name: "tagsName",
     label: "Tags",
     type: "text",
-    placeholder: "Comma separated tags",
+    placeholder: "Enter tags",
   },
-  { id: 4, name: "isPublic", label: "Is Public", type: "checkbox" },
   {
-    id: 5,
-    name: "price",
-    label: "Price",
-    type: "number",
-    placeholder: "Enter price",
+    id: 4,
+    name: "chapterIdSelect",
+    label: "Select Chapter",
+    type: "select",
+    placeholder: "Enter chapter",
   },
 ];
 
@@ -43,83 +43,93 @@ export const chaptersFields = [
     id: 2,
     name: "description",
     label: "Description",
-    type: "textarea",
-    placeholder: "Enter description",
+    type: "text",
+    placeholder: "Enter Description",
   },
   {
     id: 3,
-    name: "tags",
-    label: "Tags",
+    name: "courseIdSelect",
+    label: "Select Course",
     type: "text",
-    placeholder: "Comma separated tags",
-  },
-  { id: 4, name: "isPublic", label: "Is Public", type: "checkbox" },
-  {
-    id: 5,
-    name: "price",
-    label: "Price",
-    type: "number",
-    placeholder: "Enter price",
+    placeholder: "Enter course",
   },
 ];
 
 export const assistantsFields = [
   {
     id: 1,
-    name: "name",
-    label: "Assistant Name",
+    name: "address",
+    label: "Assistant Address",
     type: "text",
-    placeholder: "Enter assistant name",
+    placeholder: "Enter assistant address",
   },
   {
     id: 2,
-    name: "description",
-    label: "Description",
-    type: "textarea",
-    placeholder: "Enter description",
+    name: "assistantName",
+    label: "Assistant Name",
+    type: "text",
+    placeholder: "Enter Assistant Name",
   },
   {
     id: 3,
-    name: "tags",
-    label: "Tags",
-    type: "text",
-    placeholder: "Comma separated tags",
+    name: "email",
+    label: "Email",
+    type: "email",
+    placeholder: "Enter Email",
   },
-  { id: 4, name: "isPublic", label: "Is Public", type: "checkbox" },
+  {
+    id: 4,
+    name: "password",
+    label: "password",
+    type: "password",
+    placeholder: "Enter Password",
+  },
   {
     id: 5,
-    name: "price",
-    label: "Price",
+    name: "phone1",
+    label: "phone1",
     type: "number",
-    placeholder: "Enter price",
+    placeholder: "Enter phone1",
+  },
+
+  {
+    id: 6,
+    name: "phone2",
+    label: "phone2",
+    type: "number",
+    placeholder: "Enter phone2",
+  },
+  // Edit here to add select options
+  {
+    id: 7,
+    name: "authorities",
+    label: "Authorities",
+    type: "select",
+    placeholder: "Select Authorities",
   },
 ];
+// End to show UI
 
-// formdataCourse
+// start to send data to backend
+export const formDataCourse = {
+  course_name: "",
+  course_description: "",
+  course_tags: [],
+  course_background_image_base64: "",
+  chapters_ids: [],
+};
+export const formDataChapter = {
+  chapter_name: "",
+  chapter_description: "",
+  courses_ids: [],
+};
 
-// {
-//     name: "",
-//     description: "",
-//     tags: "",
-//     isPublic: false,
-//     price: "",
-//   }
-// formdataChapter
-
-// {
-//     name: "",
-//     description: "",
-//     tags: "",
-//     isPublic: false,
-//     price: "",
-//   }
-
-// formdataAssistant
-
-// {
-//     name: "",
-//     description: "",
-//     tags: "",
-//     isPublic: false,
-//     price: "",
-//   }
+export const formDataAssistant = {
+  address: "",
+  assistant_name: "",
+  assistant_email: "",
+  assistant_password: "",
+  phone1: "",
+  phone2: "",
+  authorities: [],
+};

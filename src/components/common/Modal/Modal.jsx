@@ -3,16 +3,10 @@ import { useState } from "react";
 import style from "./style.module.css";
 const { backdrop, modal } = style;
 
-const Modal = ({ open, onClose, fields }) => {
+const Modal = ({ open, onClose, fields, Data }) => {
   if (!open) return null;
 
-  const [formData, setFormData] = useState({
-    name: "",
-    description: "",
-    tags: "",
-    isPublic: false,
-    price: "",
-  });
+  const [formData, setFormData] = useState(Data);
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -24,7 +18,6 @@ const Modal = ({ open, onClose, fields }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     // Convert tags to array
     const dataToSubmit = {
       ...formData,
@@ -56,7 +49,7 @@ const Modal = ({ open, onClose, fields }) => {
               />
             </div>
           ))}
-
+          {/*get  if any selections to do it show here  */}
           <button type="submit">Submit</button>
         </form>
       </div>
