@@ -20,7 +20,7 @@ export const courseFields = [
     name: "tagsName",
     label: "Tags",
     type: "text",
-    placeholder: "Enter tags",
+    placeholder: "Enter tags like this : tag1, tag2, tag3 ...",
   },
   {
     id: 4,
