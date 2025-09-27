@@ -10,7 +10,6 @@ import { useData } from "../../context/DataContext";
 export default function CourseTable() {
   const { endPoint } = useUrl();
   const { data, updateData, search } = useData();
-
   const [cloneData, setCloneData] = useState([]);
 
   // Fetch data
@@ -41,13 +40,28 @@ export default function CourseTable() {
     }
   }, [search, data]);
 
+  const handleDelete = async (id) => {
+    try {
+      // Call API to delete
+      await api.delete(`${endPoint}/${id}`);
+
+      // Update UI (remove deleted item from cloneData & data context)
+      setCloneData((prev) => prev.filter((item) => item.id !== id));
+      updateData((prev) => prev.filter((item) => item.id !== id));
+
+      console.log(`Item with id ${id} deleted`);
+    } catch (error) {
+      console.error("Error deleting item:", error);
+    }
+  };
+
   return (
     <div className={container}>
       <table className={mainTable}>
         <thead>
           <HeadersOfTable />
         </thead>
-
+        {/* make body in another component */}
         <tbody>
           {cloneData.length > 0 ? (
             cloneData.map((item, index) => (
@@ -65,7 +79,11 @@ export default function CourseTable() {
                 <td>
                   <div className={actions}>
                     <img src={Edit} alt="Edit" className="edit" />
-                    <img src={Delete} alt="Delete" />
+                    <img
+                      src={Delete}
+                      alt="Delete"
+                      onClick={() => handleDelete(item.id)}
+                    />
                   </div>
                 </td>
               </tr>

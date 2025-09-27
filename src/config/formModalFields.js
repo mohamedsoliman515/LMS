@@ -3,28 +3,28 @@
 export const courseFields = [
   {
     id: 1,
-    name: "coursesName",
+    name: "courses_name",
     label: "Course Name",
     type: "text",
     placeholder: "Enter course name",
   },
   {
     id: 2,
-    name: "descriptionName",
+    name: "courses_description",
     label: "Description",
     type: "text",
     placeholder: "Enter Description",
   },
   {
     id: 3,
-    name: "tagsName",
+    name: "courses_tags",
     label: "Tags",
     type: "text",
     placeholder: "Enter tags like this : tag1, tag2, tag3 ...",
   },
   {
     id: 4,
-    name: "chapterIdSelect",
+    name: "chapters_ids",
     label: "Select Chapter",
     type: "select",
     placeholder: "Enter chapter",
@@ -34,21 +34,21 @@ export const courseFields = [
 export const chaptersFields = [
   {
     id: 1,
-    name: "name",
+    name: "chapter_name",
     label: "Chapter Name",
     type: "text",
     placeholder: "Enter chapter name",
   },
   {
     id: 2,
-    name: "description",
+    name: "chapter_description",
     label: "Description",
     type: "text",
     placeholder: "Enter Description",
   },
   {
     id: 3,
-    name: "courseIdSelect",
+    name: "courses_ids",
     label: "Select Course",
     type: "text",
     placeholder: "Enter course",
@@ -65,28 +65,28 @@ export const assistantsFields = [
   },
   {
     id: 2,
-    name: "assistantName",
+    name: "assistant_name",
     label: "Assistant Name",
     type: "text",
     placeholder: "Enter Assistant Name",
   },
   {
     id: 3,
-    name: "email",
+    name: "assistant_email",
     label: "Email",
     type: "email",
     placeholder: "Enter Email",
   },
   {
     id: 4,
-    name: "password",
+    name: "assistant_password",
     label: "password",
     type: "password",
     placeholder: "Enter Password",
   },
   {
     id: 5,
-    name: "phone1",
+    name: "assistant_phone1",
     label: "phone1",
     type: "number",
     placeholder: "Enter phone1",
@@ -94,7 +94,7 @@ export const assistantsFields = [
 
   {
     id: 6,
-    name: "phone2",
+    name: "assistant_phone2",
     label: "phone2",
     type: "number",
     placeholder: "Enter phone2",
@@ -102,34 +102,10 @@ export const assistantsFields = [
   // Edit here to add select options
   {
     id: 7,
-    name: "authorities",
+    name: "assistant_authorities",
     label: "Authorities",
     type: "select",
     placeholder: "Select Authorities",
   },
 ];
 // End to show UI
-
-// start to send data to backend
-export const formDataCourse = {
-  course_name: "",
-  course_description: "",
-  course_tags: [],
-  course_background_image_base64: "",
-  chapters_ids: [],
-};
-export const formDataChapter = {
-  chapter_name: "",
-  chapter_description: "",
-  courses_ids: [],
-};
-
-export const formDataAssistant = {
-  address: "",
-  assistant_name: "",
-  assistant_email: "",
-  assistant_password: "",
-  phone1: "",
-  phone2: "",
-  authorities: [],
-};

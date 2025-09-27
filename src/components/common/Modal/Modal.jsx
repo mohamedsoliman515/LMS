@@ -1,12 +1,15 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { useState } from "react";
 import style from "./style.module.css";
+import api from "../../../services/Axios-global-baseUrl";
+import { useUrl } from "../../context/UrlContext";
+
 const { backdrop, modal } = style;
 
-const Modal = ({ open, onClose, fields, Data }) => {
+const Modal = ({ open, onClose, fields }) => {
   if (!open) return null;
-
-  const [formData, setFormData] = useState({ ...Data });
+  const { endPoint } = useUrl();
+  const [formData, setFormData] = useState({});
 
   // Handle input + select changes
   const handleChange = (e) => {
@@ -14,17 +17,35 @@ const Modal = ({ open, onClose, fields, Data }) => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Convert tags to array
-    const dataToSubmit = {
-      ...formData,
-      tags: formData.tags.split(",").map((t) => t.trim()),
-    };
+    const dataToSubmit = { ...formData };
 
-    console.log("Form Submitted:", dataToSubmit);
-    // Here you can add your submission logic (e.g., API call)
+    // Normalize array-like fields (only if they exist)
+    [
+      "tags",
+      "course_tags",
+      "chapters_ids",
+      "courses_ids",
+      "authorities",
+    ].forEach((key) => {
+      if (dataToSubmit[key] && typeof dataToSubmit[key] === "string") {
+        dataToSubmit[key] = dataToSubmit[key]
+          .split(",")
+          .map((t) => t.trim())
+          .filter(Boolean);
+      }
+    });
 
+    try {
+      console.log("Form Submitted:", dataToSubmit);
+      // send data
+      const response = await api.post(endPoint, dataToSubmit);
+      console.log("Server response:", response.data);
+      onClose(); // close modal
+    } catch (error) {
+      console.error("Error submitting form:", error);
+    }
     onClose(); // close modal
   };
 
@@ -56,36 +77,3 @@ const Modal = ({ open, onClose, fields, Data }) => {
 };
 
 export default Modal;
-
-// <form onSubmit={handleSubmit}>
-//         {fields.map((field) => (
-//           <div key={field.id}>
-//             <label>{field.label}</label>
-
-//             {field.type === "select" ? (
-//               <select
-//                 name={field.name}
-//                 value={formData[field.name] ?? ""}
-//                 onChange={handleChange}
-//               >
-//                 <option value="">-- Select --</option>
-//                 {field.options?.map((opt) => (
-//                   <option key={opt.value} value={opt.value}>
-//                     {opt.label}
-//                   </option>
-//                 ))}
-//               </select>
-//             ) : (
-//               <input
-//                 type={field.type}
-//                 name={field.name}
-//                 placeholder={field.placeholder}
-//                 value={formData[field.name] ?? ""}
-//                 onChange={handleChange}
-//               />
-//             )}
-//           </div>
-//         ))}
-
-//         <button type="submit">Submit</button>
-//       </form>

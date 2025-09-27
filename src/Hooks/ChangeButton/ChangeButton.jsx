@@ -6,9 +6,6 @@ import {
   courseFields,
   chaptersFields,
   assistantsFields,
-  formDataCourse,
-  formDataChapter,
-  formDataAssistant,
 } from "../../config/formModalFields";
 const ChangeButton = () => {
   const { button } = styles;
@@ -17,18 +14,17 @@ const ChangeButton = () => {
 
   const [fields, setFields] = useState(courseFields);
   const [isOpen, setIsOpen] = useState(false);
-  const [formData, setFormData] = useState(formDataCourse);
 
   // Update fields & label when endpoint changes
   useEffect(() => {
     if (endPoint === "/chapters") {
       setFields(chaptersFields);
       setLabel("Chapter");
-      setFormData(formDataChapter);
+      // setFormData(formDataChapter);
     } else if (endPoint === "/assistants") {
       setFields(assistantsFields);
       setLabel("Assistant");
-      setFormData(formDataAssistant);
+      // setFormData(formDataAssistant);
     } else {
       setFields(courseFields);
       setLabel("Course");
@@ -42,12 +38,7 @@ const ChangeButton = () => {
         <p>Add New {label}</p>
       </button>
 
-      <Modal
-        open={isOpen}
-        onClose={() => setIsOpen(false)}
-        fields={fields}
-        Data={formData}
-      />
+      <Modal open={isOpen} onClose={() => setIsOpen(false)} fields={fields} />
     </>
   );
 };

@@ -13,13 +13,6 @@ const SignIn = () => {
 
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   if (token) {
-  //     navigate("/mainLayout");
-  //     return;
-  //   }
-  // }, [token, navigate]);
-
   // handle input change
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
