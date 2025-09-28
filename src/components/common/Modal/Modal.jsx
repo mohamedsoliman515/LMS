@@ -23,11 +23,10 @@ const Modal = ({ open, onClose, fields }) => {
 
     // Normalize array-like fields (only if they exist)
     [
-      "tags",
-      "course_tags",
+      "courses_tags",
       "chapters_ids",
       "courses_ids",
-      "authorities",
+      "assistant_authorities",
     ].forEach((key) => {
       if (dataToSubmit[key] && typeof dataToSubmit[key] === "string") {
         dataToSubmit[key] = dataToSubmit[key]
@@ -38,10 +37,16 @@ const Modal = ({ open, onClose, fields }) => {
     });
 
     try {
+      if (!endPoint) {
+        return;
+      }
       console.log("Form Submitted:", dataToSubmit);
       // send data
-      const response = await api.post(endPoint, dataToSubmit);
-      console.log("Server response:", response.data);
+      if (endPoint === "/courses") {
+        await api.post(`${endPoint}/add-new-courses`, dataToSubmit);
+      } else {
+        await api.post(endPoint, dataToSubmit);
+      }
       onClose(); // close modal
     } catch (error) {
       console.error("Error submitting form:", error);
@@ -60,12 +65,14 @@ const Modal = ({ open, onClose, fields }) => {
           {fields.map((field) => (
             <div key={field.id}>
               <label>{field.label}</label>
-              <input
-                type={field.type}
-                name={field.name}
-                placeholder={field.placeholder}
-                onChange={handleChange}
-              />
+              {field.type ? (
+                <input
+                  type={field.type}
+                  name={field.name}
+                  placeholder={field.placeholder}
+                  onChange={handleChange}
+                />
+              ) : null}
             </div>
           ))}
           {/*get  if any selections to do it show here  */}

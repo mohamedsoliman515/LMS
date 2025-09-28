@@ -24,10 +24,10 @@ export const courseFields = [
   },
   {
     id: 4,
-    name: "chapters_ids",
-    label: "Select Chapter",
-    type: "select",
-    placeholder: "Enter chapter",
+    name: "chapters_ids", // validation if !type return null
+    // label: "Select Chapter",
+    // type: "select",
+    // placeholder: "Enter chapter",
   },
 ];
 
