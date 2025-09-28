@@ -35,3 +35,20 @@
     display: none;
   }
 }
+@media (max-width: 768px) {
+  .aside {
+    flex-direction: row;
+    min-height: auto;
+    padding: 0 10px;
+    overflow-x: auto;
+    justify-content: space-between;
+  }
+  .aside > div {
+    margin: 0;
+    padding: 10px 0;
+    min-width: 50px;
+  }
+  .aside ul {
+    display: flex;
+  }
+}

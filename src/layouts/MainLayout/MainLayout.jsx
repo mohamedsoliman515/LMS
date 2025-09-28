@@ -4,13 +4,13 @@ import Header from "../../components/common/header/Header";
 import SearchInput from "../../components/common/SearchInput/SearchInput";
 import styles from "./style.module.css";
 const MainLayout = () => {
-  const { MainLayout } = styles;
+  const { MainLayout, content } = styles;
   return (
     <div className={MainLayout}>
       <nav>
         <SideMenu />
       </nav>
-      <div>
+      <div className={content}>
         <header>
           <Header />
           <SearchInput />

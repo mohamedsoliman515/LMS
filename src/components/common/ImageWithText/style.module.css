@@ -18,13 +18,19 @@
   -o-border-radius: 10px;
 }
 .ImageWithText:hover {
-  background-color: #0f172a;
   opacity: 1;
   cursor: pointer;
 }
 .ImageWithText h4 {
-
   letter-spacing: 0.1em;
   color: rgba(255, 255, 255, 0.87);
 }
 
+@media (max-width: 768px) {
+  .ImageWithText {
+    width: 100%;
+  }
+  .ImageWithText h4 {
+    letter-spacing: 0;
+  }
+}

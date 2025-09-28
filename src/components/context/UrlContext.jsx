@@ -4,6 +4,7 @@ const UrlContext = createContext();
 
 export const UrlProvider = ({ children }) => {
   const [endPoint, setEndpoint] = useState("/courses");
+
   // function to update url
   const updateEndPoint = (newUrl) => setEndpoint(newUrl);
 

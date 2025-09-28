@@ -12,6 +12,8 @@ export default function CourseTable() {
   const { data, updateData, search } = useData();
   const [cloneData, setCloneData] = useState([]);
 
+  const getItemId = (item) =>
+    item.course_id || item.chapter_id || item.assistant_id;
   // Fetch data
   useEffect(() => {
     if (!endPoint) return;
@@ -46,8 +48,8 @@ export default function CourseTable() {
       await api.delete(`${endPoint}/${id}`);
 
       // Update UI (remove deleted item from cloneData & data context)
-      setCloneData((prev) => prev.filter((item) => item.id !== id));
-      updateData((prev) => prev.filter((item) => item.id !== id));
+      setCloneData((prev) => prev.filter((item) => getItemId(item) !== id));
+      updateData((prev) => prev.filter((item) => getItemId(item) !== id));
 
       console.log(`Item with id ${id} deleted`);
     } catch (error) {
@@ -64,8 +66,8 @@ export default function CourseTable() {
         {/* make body in another component */}
         <tbody>
           {cloneData.length > 0 ? (
-            cloneData.map((item, index) => (
-              <tr key={item.id ?? index}>
+            cloneData.map((item) => (
+              <tr key={getItemId(item)}>
                 <td>
                   {item.course_name || item.chapter_name || item.assistant_name}
                 </td>
@@ -82,7 +84,7 @@ export default function CourseTable() {
                     <img
                       src={Delete}
                       alt="Delete"
-                      onClick={() => handleDelete(item.id)}
+                      onClick={() => handleDelete(getItemId(item))}
                     />
                   </div>
                 </td>
