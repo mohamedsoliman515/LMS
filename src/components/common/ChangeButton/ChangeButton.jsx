@@ -1,12 +1,12 @@
 import styles from "./style.module.css";
-import { useUrl } from "../../components/context/UrlContext";
+import { useUrl } from "../../context/UrlContext";
 import { useEffect, useState } from "react";
-import Modal from "../../components/common/Modal/Modal";
+import Modal from "../Modal/Modal";
 import {
   courseFields,
   chaptersFields,
   assistantsFields,
-} from "../../config/formModalFields";
+} from "../../../config/formModalFields";
 const ChangeButton = () => {
   const { button } = styles;
   const { endPoint } = useUrl();

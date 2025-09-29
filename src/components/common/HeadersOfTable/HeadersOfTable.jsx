@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useUrl } from "../components/context/UrlContext";
+import { useUrl } from "../../context/UrlContext";
 
 const HeadersOfTable = () => {
   const { endPoint } = useUrl();

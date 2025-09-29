@@ -1,5 +1,5 @@
 import styles from "./style.module.css";
-import ChangeButton from "../../../Hooks/ChangeButton/ChangeButton";
+import ChangeButton from "../ChangeButton/ChangeButton";
 const Header = () => {
   const { header } = styles;
   return (
