@@ -13,7 +13,7 @@ export default function CourseTable() {
   const { data, updateData, search } = useData();
   const [cloneData, setCloneData] = useState([]);
   const [openEditModal, setOpenEditModal] = useState(false);
-  const [selectedItem, setSelectedItem] = useState(null); // عشان نمرر الداتا للمودال
+  const [selectedItem, setSelectedItem] = useState(null);
 
   const getItemId = (item) =>
     item.course_id || item.chapter_id || item.assistant_id;
