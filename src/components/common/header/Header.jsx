@@ -1,11 +1,11 @@
 import styles from "./style.module.css";
-import ChangeButton from "../ChangeButton/ChangeButton";
+import ChangeAddButton from "../ChangeAddButton/ChangeAddButton";
 const Header = () => {
   const { header } = styles;
   return (
     <div className={header}>
       <h1>Manage Courses</h1>
-      <ChangeButton />
+      <ChangeAddButton />
     </div>
   );
 };

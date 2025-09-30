@@ -29,6 +29,12 @@ export const courseFields = [
     // type: "select",
     // placeholder: "Enter chapter",
   },
+  {
+    id: 5,
+    name: "is_public",
+    label: "Is Public",
+    type: "checkbox",
+  },
 ];
 
 export const chaptersFields = [

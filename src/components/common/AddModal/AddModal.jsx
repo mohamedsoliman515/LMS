@@ -13,8 +13,12 @@ const Modal = ({ open, onClose, fields }) => {
 
   // Handle input + select changes
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+    const { name, type, value } = e.target;
+
+    setFormData((prev) => ({
+      ...prev,
+      [name]: type === "checkbox" ? false : value,
+    }));
   };
 
   const handleSubmit = async (e) => {
@@ -63,7 +67,10 @@ const Modal = ({ open, onClose, fields }) => {
 
         <form onSubmit={handleSubmit}>
           {fields.map((field) => (
-            <div key={field.id}>
+            <div
+              key={field.id}
+              style={field.type === "checkbox" ? { display: "flex" } : {}}
+            >
               <label>{field.label}</label>
               {field.type ? (
                 <input

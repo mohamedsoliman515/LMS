@@ -6,14 +6,24 @@ import api from "../../../services/Axios-global-baseUrl";
 import HeadersOfTable from "../HeadersOfTable/HeadersOfTable";
 const { container, mainTable, actions } = styles;
 import { useData } from "../../context/DataContext";
+import EditModal from "../EditModal/EditModal";
 
 export default function CourseTable() {
   const { endPoint } = useUrl();
   const { data, updateData, search } = useData();
   const [cloneData, setCloneData] = useState([]);
+  const [openEditModal, setOpenEditModal] = useState(false);
+  const [selectedItem, setSelectedItem] = useState(null); // عشان نمرر الداتا للمودال
 
   const getItemId = (item) =>
     item.course_id || item.chapter_id || item.assistant_id;
+
+  const handleEdit = (id) => {
+    const item = cloneData.find((el) => getItemId(el) === id);
+    setSelectedItem(item);
+    setOpenEditModal(true);
+  };
+
   // Fetch data
   useEffect(() => {
     if (!endPoint) return;
@@ -30,7 +40,7 @@ export default function CourseTable() {
   // Update cloneData when search changes
   useEffect(() => {
     if (!search.trim()) {
-      setCloneData(data); // reset to original if search is empty
+      setCloneData(data);
     } else {
       const filtered = data.filter(
         (item) =>
@@ -80,7 +90,12 @@ export default function CourseTable() {
                 <td>{item.last_update || item.assistant_phone2}</td>
                 <td>
                   <div className={actions}>
-                    <img src={Edit} alt="Edit" className="edit" />
+                    <img
+                      src={Edit}
+                      alt="Edit"
+                      className="edit"
+                      onClick={() => handleEdit(getItemId(item))}
+                    />
                     <img
                       src={Delete}
                       alt="Delete"
@@ -99,6 +114,22 @@ export default function CourseTable() {
           )}
         </tbody>
       </table>
+
+      {openEditModal && (
+        <EditModal
+          open={openEditModal}
+          onClose={() => setOpenEditModal(false)}
+          item={selectedItem}
+          onUpdate={(updatedItem) => {
+            setCloneData((prev) =>
+              prev.map((row) => (row.id === updatedItem.id ? updatedItem : row))
+            );
+            updateData((prev) =>
+              prev.map((row) => (row.id === updatedItem.id ? updatedItem : row))
+            );
+          }}
+        />
+      )}
     </div>
   );
 }

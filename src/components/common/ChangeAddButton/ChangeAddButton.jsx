@@ -1,13 +1,13 @@
 import styles from "./style.module.css";
 import { useUrl } from "../../context/UrlContext";
 import { useEffect, useState } from "react";
-import Modal from "../Modal/Modal";
+import AddModal from "../AddModal/AddModal";
 import {
   courseFields,
   chaptersFields,
   assistantsFields,
 } from "../../../config/formModalFields";
-const ChangeButton = () => {
+const ChangeAddButton = () => {
   const { button } = styles;
   const { endPoint } = useUrl();
   const [label, setLabel] = useState("Course");
@@ -20,11 +20,9 @@ const ChangeButton = () => {
     if (endPoint === "/chapters") {
       setFields(chaptersFields);
       setLabel("Chapter");
-      // setFormData(formDataChapter);
     } else if (endPoint === "/assistants") {
       setFields(assistantsFields);
       setLabel("Assistant");
-      // setFormData(formDataAssistant);
     } else {
       setFields(courseFields);
       setLabel("Course");
@@ -38,9 +36,13 @@ const ChangeButton = () => {
         <p>Add New {label}</p>
       </button>
 
-      <Modal open={isOpen} onClose={() => setIsOpen(false)} fields={fields} />
+      <AddModal
+        open={isOpen}
+        onClose={() => setIsOpen(false)}
+        fields={fields}
+      />
     </>
   );
 };
 
-export default ChangeButton;
+export default ChangeAddButton;
