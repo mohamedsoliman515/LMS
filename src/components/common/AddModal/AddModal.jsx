@@ -98,7 +98,10 @@ const Modal = ({ open, onClose, fields }) => {
                   checked={!!formData[field.name]}
                   onChange={handleChange}
                 />
-              ) : (
+              ) : field.type === "text" ||
+                field.type === "number" ||
+                field.type === "email" ||
+                field.type === "password" ? (
                 <input
                   type={field.type}
                   name={field.name}
@@ -107,7 +110,7 @@ const Modal = ({ open, onClose, fields }) => {
                   value={formData[field.name] || ""}
                   onChange={handleChange}
                 />
-              )}
+              ) : null}
             </div>
           ))}
           {/*get  if any selections to do it show here  */}
