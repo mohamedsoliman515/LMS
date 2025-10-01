@@ -43,7 +43,6 @@ export default function EditModal({ open, onClose, item, onUpdate }) {
         <button onClick={onClose} style={{ float: "right" }}>
           X
         </button>
-        <h3>Edit Item</h3>
         <form onSubmit={handleSubmit}>
           {Object.keys(formData).map((key) => (
             <div key={key}>

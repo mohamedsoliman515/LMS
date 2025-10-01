@@ -69,17 +69,45 @@ const Modal = ({ open, onClose, fields }) => {
           {fields.map((field) => (
             <div
               key={field.id}
-              style={field.type === "checkbox" ? { display: "flex" } : {}}
+              style={
+                field.type === "checkbox"
+                  ? { display: "flex", gap: "10px", alignItems: "center" }
+                  : {}
+              }
             >
-              <label>{field.label}</label>
-              {field.type ? (
+              <label htmlFor={field.name}>{field.label}</label>
+
+              {field.type === "select" ? (
+                <select
+                  name={field.name}
+                  id={field.name}
+                  value={formData[field.name] || ""}
+                  onChange={handleChange}
+                >
+                  {field.options?.map((opt, i) => (
+                    <option key={i} value={opt}>
+                      {opt}
+                    </option>
+                  ))}
+                </select>
+              ) : field.type === "checkbox" ? (
+                <input
+                  type="checkbox"
+                  name={field.name}
+                  id={field.name}
+                  checked={!!formData[field.name]}
+                  onChange={handleChange}
+                />
+              ) : (
                 <input
                   type={field.type}
                   name={field.name}
+                  id={field.name}
                   placeholder={field.placeholder}
+                  value={formData[field.name] || ""}
                   onChange={handleChange}
                 />
-              ) : null}
+              )}
             </div>
           ))}
           {/*get  if any selections to do it show here  */}

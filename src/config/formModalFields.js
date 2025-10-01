@@ -56,8 +56,9 @@ export const chaptersFields = [
     id: 3,
     name: "courses_ids",
     label: "Select Course",
-    type: "text",
+    type: "select",
     placeholder: "Enter course",
+    options: [1, 2, 3, 4, 5],
   },
 ];
 
