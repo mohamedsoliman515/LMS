@@ -23,6 +23,7 @@ export default function CourseTable() {
     setSelectedItem(item);
     setOpenEditModal(true);
   };
+  console.log(data);
 
   // Fetch data
   useEffect(() => {

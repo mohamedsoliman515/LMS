@@ -1,29 +1,69 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import style from "./style.module.css";
 import api from "../../../services/Axios-global-baseUrl";
 import { useUrl } from "../../context/UrlContext";
+import { useData } from "../../context/DataContext";
+const { backdrop, modal, checkboxLabel, dropdown, dropdownBtn } = style;
 
-const { backdrop, modal } = style;
-
-const Modal = ({ open, onClose, fields }) => {
+const AddModal = ({ open, onClose, fields }) => {
   if (!open) return null;
+  // to watch Add immediately in table : get data and (make clone data )
   const { endPoint } = useUrl();
+  const { data } = useData();
   const [formData, setFormData] = useState({});
+  const [authorities, setAuthorities] = useState([]);
 
-  // Handle input + select changes
+  // Fetch authorities if endpoint is assistants
+  useEffect(() => {
+    if (endPoint === "/assistants") {
+      api.get("/authorities").then((res) => setAuthorities(res.data));
+    }
+  }, [endPoint]);
+
   const handleChange = (e) => {
-    const { name, type, value } = e.target;
+    const { name, type, value, checked } = e.target;
 
-    setFormData((prev) => ({
-      ...prev,
-      [name]: type === "checkbox" ? false : value,
-    }));
+    setFormData((prev) => {
+      if (type === "checkbox") {
+        const prevValues = Array.isArray(prev[name]) ? prev[name] : [];
+        if (checked) {
+          // Add the value
+          return {
+            ...prev,
+            [name]: [...prevValues, value],
+          };
+        } else {
+          // delete the value
+          return {
+            ...prev,
+            [name]: prevValues.filter((v) => v !== value),
+          };
+        }
+      } else {
+        // (text, number, radio...)
+        return {
+          ...prev,
+          [name]: value,
+        };
+      }
+    });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const dataToSubmit = { ...formData };
+
+    let submitData;
+    if (endPoint === "/courses") {
+      submitData = {
+        ...formData,
+        chapters_ids: formData.chapters_ids || [],
+        course_background_image_base64:
+          formData.course_background_image_base64 || "",
+      };
+    } else {
+      submitData = { ...formData };
+    }
 
     // Normalize array-like fields (only if they exist)
     [
@@ -32,8 +72,8 @@ const Modal = ({ open, onClose, fields }) => {
       "courses_ids",
       "assistant_authorities",
     ].forEach((key) => {
-      if (dataToSubmit[key] && typeof dataToSubmit[key] === "string") {
-        dataToSubmit[key] = dataToSubmit[key]
+      if (submitData[key] && typeof submitData[key] === "string") {
+        submitData[key] = submitData[key]
           .split(",")
           .map((t) => t.trim())
           .filter(Boolean);
@@ -44,12 +84,12 @@ const Modal = ({ open, onClose, fields }) => {
       if (!endPoint) {
         return;
       }
-      console.log("Form Submitted:", dataToSubmit);
+      console.log("Form Submitted:", submitData);
       // send data
       if (endPoint === "/courses") {
-        await api.post(`${endPoint}/add-new-courses`, dataToSubmit);
+        await api.post(`${endPoint}/add-new-courses`, submitData);
       } else {
-        await api.post(endPoint, dataToSubmit);
+        await api.post(endPoint, submitData);
       }
       onClose(); // close modal
     } catch (error) {
@@ -71,33 +111,37 @@ const Modal = ({ open, onClose, fields }) => {
               key={field.id}
               style={
                 field.type === "checkbox"
-                  ? { display: "flex", gap: "10px", alignItems: "center" }
+                  ? { display: "flex", alignItems: "center" }
                   : {}
               }
             >
-              <label htmlFor={field.name}>{field.label}</label>
+              <label htmlFor={field.name}>
+                {field.type !== "checkbox" && field.label}
+              </label>
 
               {field.type === "select" ? (
                 <select
                   name={field.name}
                   id={field.name}
-                  value={formData[field.name] || ""}
                   onChange={handleChange}
                 >
-                  {field.options?.map((opt, i) => (
-                    <option key={i} value={opt}>
-                      {opt}
-                    </option>
-                  ))}
+                  {endPoint === "/chapters" &&
+                    data.map((item) => (
+                      <option key={item.chapter_id} value={item.chapter_id}>
+                        {item.chapter_id}
+                      </option>
+                    ))}
                 </select>
-              ) : field.type === "checkbox" ? (
-                <input
-                  type="checkbox"
-                  name={field.name}
-                  id={field.name}
-                  checked={!!formData[field.name]}
-                  onChange={handleChange}
-                />
+              ) : field.name === "is_public" ? (
+                <label className={`${checkboxLabel}`}>
+                  <input
+                    type="checkbox"
+                    name={field.name}
+                    id={field.id}
+                    onChange={handleChange}
+                  />
+                  Is Public
+                </label>
               ) : field.type === "text" ||
                 field.type === "number" ||
                 field.type === "email" ||
@@ -107,9 +151,28 @@ const Modal = ({ open, onClose, fields }) => {
                   name={field.name}
                   id={field.name}
                   placeholder={field.placeholder}
-                  value={formData[field.name] || ""}
                   onChange={handleChange}
                 />
+              ) : field.name === "assistant_authorities" ? (
+                <div className={dropdown}>
+                  <button type="button" className={dropdownBtn}>
+                    Select Authorities
+                  </button>
+
+                  <div className={style.dropdownContent}>
+                    {authorities.map((auth) => (
+                      <label key={auth.id} className={checkboxLabel}>
+                        <input
+                          type="checkbox"
+                          name={field.name}
+                          value={auth}
+                          onChange={handleChange}
+                        />
+                        {auth}
+                      </label>
+                    ))}
+                  </div>
+                </div>
               ) : null}
             </div>
           ))}
@@ -121,4 +184,4 @@ const Modal = ({ open, onClose, fields }) => {
   );
 };
 
-export default Modal;
+export default AddModal;

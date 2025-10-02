@@ -22,6 +22,8 @@
   box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.5);
   z-index: 1000;
   width: 400px;
+  max-height: 90vh;
+  overflow-y: auto;
 }
 
 .modal form {
@@ -33,7 +35,6 @@
 .modal label {
   font-weight: bold;
   margin-bottom: 5px;
-  display: block;
   color: rgba(255, 255, 255, 0.87);
 }
 
@@ -71,12 +72,76 @@
 .checkboxLabel {
   display: flex;
   align-items: center;
-  justify-content: flex-start;
-  text-align: start;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.87);
+  cursor: pointer;
 }
 
 .checkboxLabel input {
-  width: 18px;
-  height: 18px;
-  margin-left: 20px;
+  width: 16px;
+  height: 16px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+
+.dropdownBtn {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #444;
+  border-radius: 6px;
+  background: #1a2236;
+  color: rgba(255, 255, 255, 0.9);
+  text-align: left;
+  cursor: pointer;
+}
+/* start  dropdown*/
+.dropdown {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+
+.dropdownBtn {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #444;
+  border-radius: 6px;
+  background: #1a2236;
+  color: rgba(255, 255, 255, 0.9);
+  text-align: left;
+  cursor: pointer;
+}
+
+.dropdownContent {
+  display: none;
+  position: absolute;
+  background-color: #0b1224;
+  min-width: 100%;
+  border: 1px solid #444;
+  border-radius: 6px;
+  box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.5);
+  z-index: 1;
+  padding: 10px;
+  max-height: 200px;
+  overflow-y: auto;
+  transition: all 0.3s ease-in-out;
+}
+
+.dropdown:hover .dropdownContent {
+  display: block;
+}
+
+.dropdownContent label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px;
+  color: rgba(255, 255, 255, 0.87);
+  cursor: pointer;
 }

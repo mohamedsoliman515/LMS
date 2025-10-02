@@ -1,5 +1,6 @@
 // src/config/formFields.js
 // start to show UI
+
 export const courseFields = [
   {
     id: 1,
@@ -24,13 +25,27 @@ export const courseFields = [
   },
   {
     id: 4,
-    name: "chapters_ids", // validation if !type return null
-    // label: "Select Chapter",
-    // type: "select",
-    // placeholder: "Enter chapter",
+    name: "course_price",
+    label: "Price",
+    type: "number",
+    placeholder: "Enter Price",
   },
   {
     id: 5,
+    name: "course_discount",
+    label: "Discount Price",
+    type: "number",
+    placeholder: "Enter Discount ",
+  },
+  {
+    id: 6,
+    name: "whatsapp_number",
+    label: "WhatsApp Number",
+    type: "number",
+    placeholder: "Enter WhatsApp Number ",
+  },
+  {
+    id: 7,
     name: "is_public",
     label: "Is Public",
     type: "checkbox",
@@ -58,7 +73,6 @@ export const chaptersFields = [
     label: "Select Course",
     type: "select",
     placeholder: "Enter course",
-    options: [1, 2, 3, 4, 5],
   },
 ];
 
@@ -111,8 +125,7 @@ export const assistantsFields = [
     id: 7,
     name: "assistant_authorities",
     label: "Authorities",
-    type: "select",
-    placeholder: "Select Authorities",
+    type: "checkbox",
   },
 ];
 // End to show UI
