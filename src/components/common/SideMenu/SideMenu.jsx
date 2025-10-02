@@ -2,9 +2,11 @@ import ImageWithText from "../ImageWithText/ImageWithText";
 import styles from "./style.module.css";
 import { AssistantsIcon, courses, chapters } from "../../../assets";
 import { useUrl } from "../../context/UrlContext";
+
 const SideMenu = () => {
-  const { aside } = styles;
-  const { updateEndPoint } = useUrl();
+  const { aside, active } = styles;
+  const { updateEndPoint, endPoint } = useUrl();
+
   return (
     <aside className={aside}>
       <div>
@@ -37,6 +39,7 @@ const SideMenu = () => {
 
       <ul>
         <li
+          className={`${endPoint === "/courses" ? active : null}`}
           onClick={() => {
             updateEndPoint("/courses");
           }}
@@ -44,6 +47,7 @@ const SideMenu = () => {
           <ImageWithText image={courses} text="Courses" />
         </li>
         <li
+          className={`${endPoint === "/chapters" ? active : null}`}
           onClick={() => {
             updateEndPoint("/chapters");
           }}
@@ -51,6 +55,7 @@ const SideMenu = () => {
           <ImageWithText image={chapters} text="Chapters" />
         </li>
         <li
+          className={`${endPoint === "/assistants" ? active : null}`}
           onClick={() => {
             updateEndPoint("/assistants");
           }}

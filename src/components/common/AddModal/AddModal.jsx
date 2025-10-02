@@ -60,6 +60,7 @@ const AddModal = ({ open, onClose, fields }) => {
         chapters_ids: formData.chapters_ids || [],
         course_background_image_base64:
           formData.course_background_image_base64 || "",
+        is_public: formData.is_public ? true : false,
       };
     } else {
       submitData = { ...formData };

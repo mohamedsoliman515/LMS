@@ -52,3 +52,6 @@
     display: flex;
   }
 }
+.active > div {
+  background-color: #1173d4;
+}
