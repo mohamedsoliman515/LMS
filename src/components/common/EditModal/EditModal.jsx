@@ -64,15 +64,17 @@ export default function EditModal({ open, onClose, item, onUpdate }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const oldItem = { ...item };
+    onUpdate({ ...item, ...formData });
     try {
       await api.put(
         `${endPoint}/${item.course_id || item.chapter_id || item.assistant_id}`,
         formData
       );
-      onUpdate(formData);
       onClose();
     } catch (error) {
       console.error("Error updating item:", error);
+      onUpdate(oldItem);
     }
   };
 
