@@ -17,13 +17,11 @@ export default function CourseTable() {
 
   const getItemId = (item) =>
     item.course_id || item.chapter_id || item.assistant_id;
-
   const handleEdit = (id) => {
     const item = cloneData.find((el) => getItemId(el) === id);
     setSelectedItem(item);
     setOpenEditModal(true);
   };
-  console.log(data);
 
   // Fetch data
   useEffect(() => {
@@ -52,7 +50,7 @@ export default function CourseTable() {
       setCloneData(filtered);
     }
   }, [search, data]);
-
+  //
   const handleDelete = async (id) => {
     try {
       // Call API to delete
@@ -123,10 +121,14 @@ export default function CourseTable() {
           item={selectedItem}
           onUpdate={(updatedItem) => {
             setCloneData((prev) =>
-              prev.map((row) => (row.id === updatedItem.id ? updatedItem : row))
+              prev.map((row) =>
+                getItemId(row) === getItemId(updatedItem) ? updatedItem : row
+              )
             );
             updateData((prev) =>
-              prev.map((row) => (row.id === updatedItem.id ? updatedItem : row))
+              prev.map((row) =>
+                getItemId(row) === getItemId(updatedItem) ? updatedItem : row
+              )
             );
           }}
         />

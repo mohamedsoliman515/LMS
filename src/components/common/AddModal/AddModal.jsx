@@ -66,7 +66,7 @@ const AddModal = ({ open, onClose, fields }) => {
       submitData = { ...formData };
     }
 
-    // Normalize array-like fields (only if they exist)
+    // Normalize array-like fields (only if they exist).
     [
       "courses_tags",
       "chapters_ids",
@@ -85,13 +85,14 @@ const AddModal = ({ open, onClose, fields }) => {
       if (!endPoint) {
         return;
       }
-      console.log("Form Submitted:", submitData);
+      // console.log("Form Submitted:", submitData);
       // send data
       if (endPoint === "/courses") {
         await api.post(`${endPoint}/add-new-courses`, submitData);
       } else {
         await api.post(endPoint, submitData);
       }
+
       onClose(); // close modal
     } catch (error) {
       console.error("Error submitting form:", error);
@@ -162,7 +163,7 @@ const AddModal = ({ open, onClose, fields }) => {
 
                   <div className={style.dropdownContent}>
                     {authorities.map((auth) => (
-                      <label key={auth.id} className={checkboxLabel}>
+                      <label key={auth} className={checkboxLabel}>
                         <input
                           type="checkbox"
                           name={field.name}
@@ -177,7 +178,6 @@ const AddModal = ({ open, onClose, fields }) => {
               ) : null}
             </div>
           ))}
-          {/*get  if any selections to do it show here  */}
           <button type="submit">Submit</button>
         </form>
       </div>
